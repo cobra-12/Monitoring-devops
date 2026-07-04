@@ -1,0 +1,21 @@
+name: deploy  Zabbix Monitoring Stack
+on:
+  push:
+    branches:
+      - main
+
+      jobs:
+  deploy:
+  runs-on: ubuntu-latest
+  steps:
+  -name: checkout du code
+    uses: actions/checkout@v3
+
+    -names: verification de Docker
+    run: docker --version
+
+    -name: Lancement du stack Zabbix
+    run: docker-compose up -d
+
+    -name: verification du conteneur
+    run: docker compose ps
